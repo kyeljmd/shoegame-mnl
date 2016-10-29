@@ -26,13 +26,13 @@ public class Variant {
     private List<Image> assets;
 
     @ManyToOne
-    private Footwear product;
+    private FootWear product;
 
     @Column(name = "IS_DEFAULT")
     private boolean defaultVariant;
 
     @Column(name = "colorWay")
-    private String colorway;
+    private String colorWay;
 
     @Embedded
     private Price price;
@@ -45,12 +45,20 @@ public class Variant {
         this.id = id;
     }
 
-    public Footwear getProduct() {
+    public FootWear getProduct() {
         return product;
     }
 
-    public void setProduct(Footwear product) {
+    public void setProduct(FootWear product) {
         this.product = product;
+    }
+
+    public String getColorWay() {
+        return colorWay;
+    }
+
+    public void setColorWay(String colorWay) {
+        this.colorWay = colorWay;
     }
 
     public Price getPrice() {
