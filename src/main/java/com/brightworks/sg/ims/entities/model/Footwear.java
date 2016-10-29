@@ -10,14 +10,24 @@ import java.util.List;
  */
 @Entity
 @Table(name = "FOOTWEARS")
-public class Footwear {
+public class FootWear {
 
     @Id
     private Long id;
 
+    /**
+     * Generale name of the sneaker
+     */
     @Column(name = "name")
     private String name;
 
+    /**
+     * Must be unique throughout the system
+     * this will be used on search for REST
+     * friendly URLS
+     */
+    @Column(name = "CANONICAL_NAME")
+    private String canonicalName;
 
     @ManyToOne
     private Brand brand;

@@ -1,12 +1,8 @@
 package com.brightworks.sg.ims.entities;
 
-import com.brightworks.sg.ims.entities.model.Footwear;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.List;
 
 /**
  * Created by kyel on 10/22/2016.
