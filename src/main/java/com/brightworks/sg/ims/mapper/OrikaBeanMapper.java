@@ -2,9 +2,11 @@ package com.brightworks.sg.ims.mapper;
 
 import com.brightworks.sg.ims.dto.BrandDTO;
 import com.brightworks.sg.ims.dto.FootWearDTO;
+import com.brightworks.sg.ims.dto.ImageDTO;
 import com.brightworks.sg.ims.dto.VariantDTO;
 import com.brightworks.sg.ims.entities.Brand;
 import com.brightworks.sg.ims.entities.model.FootWear;
+import com.brightworks.sg.ims.entities.model.Image;
 import com.brightworks.sg.ims.entities.model.Variant;
 import ma.glasnost.orika.Converter;
 import ma.glasnost.orika.Mapper;
@@ -44,11 +46,10 @@ public class OrikaBeanMapper extends ConfigurableMapper implements ApplicationCo
     protected void configure(MapperFactory factory) {
         this.factory = factory;
         addAllSpringBeans(applicationContext);
-
-
         factory.classMap(FootWear.class,FootWearDTO.class).byDefault().register();
         factory.classMap(Brand.class, BrandDTO.class).byDefault().register();
         factory.classMap(Variant.class, VariantDTO.class).byDefault().register();
+        factory.classMap(Image.class, ImageDTO.class).byDefault().register();
     }
 
     /**

@@ -3,8 +3,10 @@ package com.brightworks.sg.ims.mapper;
 import com.brightworks.sg.ims.ShoegameApplicationTests;
 import com.brightworks.sg.ims.dto.BrandDTO;
 import com.brightworks.sg.ims.dto.FootWearDTO;
+import com.brightworks.sg.ims.dto.VariantDTO;
 import com.brightworks.sg.ims.entities.Brand;
 import com.brightworks.sg.ims.entities.model.FootWear;
+import com.brightworks.sg.ims.entities.model.Variant;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,39 +18,47 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * No Need to write test for brand.
+ * Since this already performs it within
+ */
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ShoegameApplicationTests.class)
-public class FootWearMapperTest {
+public class OrikaBeanMapperTest {
 
     @Autowired
     private OrikaBeanMapper mapper;
 
-    private FootWear model;
+    private FootWear footWearModel;
 
-    private FootWearDTO dto;
+    private FootWearDTO footWearDTO;
+
+    private VariantDTO variantDTO;
+
+    private Variant variantModel;
+
 
     @Test
     public void footWearModelToFootWearDTO() {
-        FootWearDTO footWearDTO = mapper.map(this.model,FootWearDTO.class);
-        assertEquals(footWearDTO.getId(),this.model.getId());
-        assertEquals(footWearDTO.getName(),this.model.getName());
-        assertEquals(footWearDTO.getBrand().getName(),this.model.getBrand().getName());
-        assertEquals(footWearDTO.getBrand().getId(),this.model.getBrand().getId());
+        FootWearDTO footWearDTO = mapper.map(this.footWearModel,FootWearDTO.class);
+        assertEquals(footWearDTO.getId(),this.footWearModel.getId());
+        assertEquals(footWearDTO.getName(),this.footWearModel.getName());
+        assertEquals(footWearDTO.getBrand().getName(),this.footWearModel.getBrand().getName());
+        assertEquals(footWearDTO.getBrand().getId(),this.footWearModel.getBrand().getId());
     }
 
     @Test
     public void footWearDTOToFootWearModel() {
-        FootWear footWearModel = mapper.map(this.dto,FootWear.class);
-        assertEquals(footWearModel.getId(),this.dto.getId());
-        assertEquals(footWearModel.getName(),this.dto.getName());
-        assertEquals(footWearModel.getBrand().getName(),this.dto.getBrand().getName());
-        assertEquals(footWearModel.getBrand().getId(),this.dto.getBrand().getId());
+        FootWear footWearModel = mapper.map(this.footWearDTO,FootWear.class);
+        assertEquals(footWearModel.getId(),this.footWearDTO.getId());
+        assertEquals(footWearModel.getName(),this.footWearDTO.getName());
+        assertEquals(footWearModel.getBrand().getName(),this.footWearDTO.getBrand().getName());
+        assertEquals(footWearModel.getBrand().getId(),this.footWearDTO.getBrand().getId());
     }
 
-
     @Before
-    public void buildModel(){
+    public void buildFootWearModel(){
         Brand brand = new Brand();
         brand.setName("Nike");
         brand.setId(1L);
@@ -57,12 +67,12 @@ public class FootWearMapperTest {
         footWear.setName("Air Huarache");
         footWear.setId(2L);
         footWear.setBrand(brand);
-        this.model = footWear;
+        this.footWearModel = footWear;
     }
 
 
     @Before
-    public void buildDTO(){
+    public void buildFootWearDTO(){
         BrandDTO brand = new BrandDTO();
         brand.setName("Nike");
         brand.setId(1L);
@@ -71,6 +81,6 @@ public class FootWearMapperTest {
         footWear.setName("Air Huarache");
         footWear.setId(2L);
         footWear.setBrand(brand);
-        this.dto = footWear;
+        this.footWearDTO = footWear;
     }
 }
