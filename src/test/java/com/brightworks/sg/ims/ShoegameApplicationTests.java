@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @ComponentScan(basePackageClasses = {OrikaBeanMapper.class})
 public class ShoegameApplicationTests {
