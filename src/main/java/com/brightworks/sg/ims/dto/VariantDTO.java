@@ -13,7 +13,7 @@ public class VariantDTO {
 
     private String SKU;
 
-    private String quantity;
+    private Integer quantity;
 
     private FootWearDTO footwear;
 
@@ -49,12 +49,29 @@ public class VariantDTO {
         this.SKU = SKU;
     }
 
-    public String getQuantity() {
+
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean isDefaultVariant() {
+        return defaultVariant;
+    }
+
+    public void setDefaultVariant(boolean defaultVariant) {
+        this.defaultVariant = defaultVariant;
+    }
+
+    public PriceDTO getPrice() {
+        return price;
+    }
+
+    public void setPrice(PriceDTO price) {
+        this.price = price;
     }
 
     public FootWearDTO getFootwear() {

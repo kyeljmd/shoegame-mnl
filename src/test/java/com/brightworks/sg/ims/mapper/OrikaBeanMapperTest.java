@@ -2,7 +2,9 @@ package com.brightworks.sg.ims.mapper;
 
 import com.brightworks.sg.ims.ShoegameApplicationTests;
 import com.brightworks.sg.ims.dto.FootWearDTO;
+import com.brightworks.sg.ims.dto.VariantDTO;
 import com.brightworks.sg.ims.entities.model.FootWear;
+import com.brightworks.sg.ims.entities.model.Variant;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,20 @@ public class OrikaBeanMapperTest {
 
     @Autowired
     private OrikaBeanMapper mapper;
+
+    @Test
+    public void variantModelToVariantDTO(){
+        Variant variant = variantModelThatIsDefault();
+        VariantDTO variantDTO = mapper.map(variant,VariantDTO.class);
+        assertEquals(variantDTO.getId(),variant.getId());
+        assertEquals(variantDTO.getColorWay(),variant.getColorWay());
+        assertEquals(variantDTO.getSize(),variant.getSize());
+        assertEquals(variantDTO.getQuantity(),variant.getQuantity());
+        assertEquals(variantDTO.getSKU(),variant.getSKU());
+        assertEquals(variantDTO.getAssets().size(), variant.getAssets().size());
+        assertEquals(variantDTO.getPrice().getRegularPrice(), variant.getPrice().getRegularPrice());
+        assertEquals(variantDTO.getPrice().getSalePrice(), variant.getPrice().getSalePrice());
+    }
 
     @Test
     public void footWearModelToFootWearDTO() {

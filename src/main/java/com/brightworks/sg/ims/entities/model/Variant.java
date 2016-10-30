@@ -20,7 +20,7 @@ public class Variant {
     private String SKU;
 
     @Column(name="QUANTITY")
-    private Long quantity;
+    private Integer quantity;
 
     @OneToMany
     private List<Image> assets;
@@ -36,6 +36,7 @@ public class Variant {
 
     @Embedded
     private Price price;
+
 
     public Long getId() {
         return id;
@@ -85,11 +86,11 @@ public class Variant {
         this.SKU = SKU;
     }
 
-    public Long getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Long quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 

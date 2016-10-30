@@ -8,16 +8,16 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Price {
 
-    private Double price;
+    private Double regularPrice;
 
     private Double salePrice;
 
-    public Double getPrice() {
-        return price;
+    public Double getRegularPrice() {
+        return regularPrice;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setRegularPrice(Double regularPrice) {
+        this.regularPrice = regularPrice;
     }
 
     public Double getSalePrice() {
