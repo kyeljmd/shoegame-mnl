@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.brightworks.sg.ims</groupId>
-	<artifactId>shoegame-core</artifactId>
+	<artifactId>shoegame</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>shoegame-core</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Shoegame Manila</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -49,26 +49,21 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>9.4.1211.jre7</version>
-		</dependency><!--
-
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-mongodb</artifactId>
-		</dependency>-->
-
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/ma.glasnost.orika/orika-core -->
+
+		<!-- for mapping of DTOS to Objects and vice versa -->
 		<dependency>
 			<groupId>ma.glasnost.orika</groupId>
 			<artifactId>orika-core</artifactId>
 			<version>1.4.6</version>
 		</dependency>
 
-		<!-- for  thymeleaf-->
+		<!-- for  thymeleaf to remove strict HTML-->
 		<!-- https://mvnrepository.com/artifact/net.sourceforge.nekohtml/nekohtml -->
 		<dependency>
 			<groupId>net.sourceforge.nekohtml</groupId>
@@ -76,6 +71,7 @@
 			<version>1.9.22</version>
 		</dependency>
 
+		<!-- For password encoding usages -->
 		<dependency>
 			<groupId>org.jasypt</groupId>
 			<artifactId>jasypt</artifactId>
