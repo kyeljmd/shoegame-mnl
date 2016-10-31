@@ -11,12 +11,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import static com.brightworks.sg.ims.mapper.OrikaBeanMapperTestUtils.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 /**
  * No Need to write test for brand.
  * Since this already performs it within
@@ -28,6 +30,9 @@ public class OrikaBeanMapperTest {
 
     @Autowired
     private OrikaBeanMapper mapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Test
     public void userModelToUserDTO(){
@@ -53,6 +58,20 @@ public class OrikaBeanMapperTest {
         assertEquals(dto.getId(),user.getId());
         assertEquals(dto.getPassword(),user.getPassword());
         assertEquals(dto.getRoles().size(),user.getRoles().size());
+    }
+
+    @Test
+    public void createNewUserFromDTOToUserModelWithEncodedPassword(){
+        UserDTO newUser = userDTO();
+        newUser.setId(null);
+        User mappingResult = mapper.map(newUser,User.class);
+        assertEquals(newUser.getFamilyName(), mappingResult.getFamilyname());
+        assertEquals(newUser.getGivenName(), mappingResult.getGivenName());
+        assertEquals(newUser.getMiddleName(), mappingResult.getMiddleName());
+        assertEquals(newUser.getEmail(), mappingResult.getEmail());
+        assertEquals(newUser.getId(), mappingResult.getId());
+        assertTrue(passwordEncoder.matches(newUser.getPassword(), mappingResult.getPassword()));
+        assertEquals(newUser.getRoles().size(), mappingResult.getRoles().size());
     }
 
     @Test

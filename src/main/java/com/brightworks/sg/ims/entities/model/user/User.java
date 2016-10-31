@@ -25,8 +25,20 @@ public class User {
     @OneToMany
     private List<Role> roles;
 
+    @Column(name  = "enabled")
+    private boolean enabled;
+
     public User() {
         this.name = new Name();
+    }
+
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Long getId() {

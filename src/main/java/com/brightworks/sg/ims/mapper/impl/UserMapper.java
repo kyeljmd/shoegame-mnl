@@ -4,6 +4,8 @@ import com.brightworks.sg.ims.dto.UserDTO;
 import com.brightworks.sg.ims.entities.model.user.User;
 import ma.glasnost.orika.CustomMapper;
 import ma.glasnost.orika.MappingContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +13,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UserMapper extends CustomMapper<User, UserDTO> {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public void mapAtoB(User model, UserDTO dto, MappingContext context) {
         dto.setFamilyName(model.getFamilyname());
@@ -22,5 +27,9 @@ public class UserMapper extends CustomMapper<User, UserDTO> {
         model.setGivenName(dto.getGivenName());
         model.setMiddleName(dto.getMiddleName());
         model.setFamilyName(dto.getFamilyName());
+
+        if(dto.isNew()) {
+            model.setPassword(passwordEncoder.encode(dto.getPassword()));
+        }
     }
 }

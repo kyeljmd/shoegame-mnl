@@ -76,4 +76,6 @@ public class UserDTO {
     public void setFamilyName(String familyName) {
         this.familyName = familyName;
     }
+
+    public boolean isNew() { return id == null; }
 }
