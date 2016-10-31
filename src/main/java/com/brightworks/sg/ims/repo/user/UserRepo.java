@@ -7,4 +7,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * Created by Dell on 29/10/2016.
  */
 public interface UserRepo extends PagingAndSortingRepository<User,Long> {
+
+    User findByEmail(String email);
 }

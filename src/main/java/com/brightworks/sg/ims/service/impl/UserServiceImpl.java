@@ -2,8 +2,8 @@ package com.brightworks.sg.ims.service.impl;
 
 import com.brightworks.sg.ims.dto.UserDTO;
 import com.brightworks.sg.ims.entities.model.user.User;
-import com.brightworks.sg.ims.entities.repo.UserRepo;
 import com.brightworks.sg.ims.mapper.OrikaBeanMapper;
+import com.brightworks.sg.ims.repo.user.UserRepo;
 import com.brightworks.sg.ims.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
