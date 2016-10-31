@@ -17,10 +17,17 @@ public class User {
     private Name name;
 
     @Column(name = "EMAIL_ADDRESS")
-    private Long email;
+    private String  email;
+
+    @Column(name="PASSWORD")
+    private String password;
 
     @OneToMany
     private List<Role> roles;
+
+    public User() {
+        this.name = new Name();
+    }
 
     public Long getId() {
         return id;
@@ -30,11 +37,12 @@ public class User {
         this.id = id;
     }
 
-    public Long getEmail() {
+
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Long email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -76,5 +84,13 @@ public class User {
 
     public void setName(Name name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -2,9 +2,11 @@ package com.brightworks.sg.ims.mapper;
 
 import com.brightworks.sg.ims.ShoegameApplicationTests;
 import com.brightworks.sg.ims.dto.FootWearDTO;
+import com.brightworks.sg.ims.dto.UserDTO;
 import com.brightworks.sg.ims.dto.VariantDTO;
 import com.brightworks.sg.ims.entities.model.FootWear;
 import com.brightworks.sg.ims.entities.model.Variant;
+import com.brightworks.sg.ims.entities.model.user.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,8 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
+import static com.brightworks.sg.ims.mapper.OrikaBeanMapperTestUtils.*;
 import static org.junit.Assert.assertEquals;
-import static  com.brightworks.sg.ims.mapper.OrikaBeanMapperTestUtils.*;
 /**
  * No Need to write test for brand.
  * Since this already performs it within
@@ -26,6 +28,32 @@ public class OrikaBeanMapperTest {
 
     @Autowired
     private OrikaBeanMapper mapper;
+
+    @Test
+    public void userModelToUserDTO(){
+        User user = userModel();
+        UserDTO dto = mapper.map(user,UserDTO.class);
+        assertEquals(dto.getFamilyName(),user.getFamilyname());
+        assertEquals(dto.getGivenName(),user.getGivenName());
+        assertEquals(dto.getMiddleName(),user.getMiddleName());
+        assertEquals(dto.getEmail(), user.getEmail());
+        assertEquals(dto.getId(),user.getId());
+        assertEquals(dto.getPassword(),user.getPassword());
+        assertEquals(dto.getRoles().size(),user.getRoles().size());
+    }
+
+    @Test
+    public void userDTOToUserModel(){
+        UserDTO dto = userDTO();
+        User user = mapper.map(dto,User.class);
+        assertEquals(dto.getFamilyName(),user.getFamilyname());
+        assertEquals(dto.getGivenName(),user.getGivenName());
+        assertEquals(dto.getMiddleName(),user.getMiddleName());
+        assertEquals(dto.getEmail(), user.getEmail());
+        assertEquals(dto.getId(),user.getId());
+        assertEquals(dto.getPassword(),user.getPassword());
+        assertEquals(dto.getRoles().size(),user.getRoles().size());
+    }
 
     @Test
     public void variantModelToVariantDTO(){

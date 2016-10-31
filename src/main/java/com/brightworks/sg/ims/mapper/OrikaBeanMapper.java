@@ -1,13 +1,13 @@
 package com.brightworks.sg.ims.mapper;
 
-import com.brightworks.sg.ims.dto.BrandDTO;
-import com.brightworks.sg.ims.dto.FootWearDTO;
-import com.brightworks.sg.ims.dto.ImageDTO;
-import com.brightworks.sg.ims.dto.VariantDTO;
+import com.brightworks.sg.ims.dto.*;
 import com.brightworks.sg.ims.entities.Brand;
 import com.brightworks.sg.ims.entities.model.FootWear;
 import com.brightworks.sg.ims.entities.model.Image;
 import com.brightworks.sg.ims.entities.model.Variant;
+import com.brightworks.sg.ims.entities.model.user.Role;
+import com.brightworks.sg.ims.entities.model.user.User;
+import com.brightworks.sg.ims.mapper.impl.UserMapper;
 import ma.glasnost.orika.Converter;
 import ma.glasnost.orika.Mapper;
 import ma.glasnost.orika.MapperFactory;
@@ -15,6 +15,7 @@ import ma.glasnost.orika.converter.ConverterFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import ma.glasnost.orika.metadata.ClassMapBuilder;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -35,6 +36,9 @@ public class OrikaBeanMapper extends ConfigurableMapper implements ApplicationCo
 
     private ApplicationContext applicationContext;
 
+    @Autowired
+    private UserMapper userMapper;
+
     public OrikaBeanMapper() {
         super(false);
     }
@@ -50,6 +54,8 @@ public class OrikaBeanMapper extends ConfigurableMapper implements ApplicationCo
         factory.classMap(Brand.class, BrandDTO.class).byDefault().register();
         factory.classMap(Variant.class, VariantDTO.class).byDefault().register();
         factory.classMap(Image.class, ImageDTO.class).byDefault().register();
+        factory.classMap(Role.class, RoleDTO.class).byDefault().register();
+        factory.classMap(User.class, UserDTO.class).customize(userMapper).byDefault().register();
     }
 
     /**

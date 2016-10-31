@@ -2,19 +2,65 @@ package com.brightworks.sg.ims.mapper;
 
 import com.brightworks.sg.ims.dto.BrandDTO;
 import com.brightworks.sg.ims.dto.FootWearDTO;
+import com.brightworks.sg.ims.dto.RoleDTO;
+import com.brightworks.sg.ims.dto.UserDTO;
 import com.brightworks.sg.ims.entities.Brand;
 import com.brightworks.sg.ims.entities.model.FootWear;
 import com.brightworks.sg.ims.entities.model.Image;
 import com.brightworks.sg.ims.entities.model.Price;
 import com.brightworks.sg.ims.entities.model.Variant;
+import com.brightworks.sg.ims.entities.model.user.Role;
+import com.brightworks.sg.ims.entities.model.user.User;
+import org.dom4j.util.UserDataDocumentFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by Dell on 29/10/2016.
  */
 public class OrikaBeanMapperTestUtils {
+
+    public static User userModel(){
+        User user = new User();
+        user.setId(1L);
+        user.setEmail("user@gmail.com");
+        user.setPassword("longpassword");
+        user.setFamilyName("Family Name");
+        user.setGivenName("Given Name");
+        user.setMiddleName("Middle Name");
+        user.setRoles(roles());
+        return user;
+    }
+
+    public static UserDTO userDTO(){
+        UserDTO user = new UserDTO();
+
+        user.setId(1L);
+        user.setEmail("user@gmail.com");
+        user.setPassword("longpassword");
+        user.setFamilyName("Family Name");
+        user.setGivenName("Given Name");
+        user.setMiddleName("Middle Name");
+        user.setRoles(rolesDTO());
+        return user;
+    }
+
+    private static List<Role> roles() {
+        Role role = new Role();
+        role.setCode("VIEW_CATALOG");
+        role.setDescription("CAN VIEW CATALOGUES");
+        return Arrays.asList(role);
+    }
+
+
+    private static List<RoleDTO> rolesDTO() {
+        RoleDTO role = new RoleDTO();
+        role.setCode("VIEW_CATALOG");
+        role.setDescription("CAN VIEW CATALOGUES");
+        return Arrays.asList(role);
+    }
 
     public static Variant variantModelThatIsDefault(){
         Variant variant = new Variant();
